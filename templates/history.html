@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %} History {% endblock %}
+
+{% block main %}
+<table class="table table-striped table-hover">
+    <tfoot>
+        <tr >
+            <td colspan="4">
+                <a  href="/clear_history">
+                    <button class="btn btn-outline-danger d-block w-100" title="Warning This action will delete your entire history ❗">Clear History</button>
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Transacted</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for history in historys %}
+        <tr>
+            <td><strong>{{ history.symbol }}</strong></td>
+            <td>{{ history.shares_count}}</td>
+            <td id="total_shares_count"><strong>{{ history.price}}</strong></td>
+            <td id="share_price">{{ history.transacted }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %} Home {% endblock %}
+{% block main %}
+<div class="row">
+    <table class="table table-striped table-hover">
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                {% if shares %}
+                    <td><strong id="total">{{ (total + cash ) | usd }}</strong></td>
+                {% endif %}
+            </tr>
+        </tfoot>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody >
+        {% for share in shares %}
+            <tr class="symbol">
+                <td><a href="/sell" title="Click to sell 💰">{{ share.stock_symbol }}</a></td>
+                <td>{{ share.stock_name}}</td>
+                <td id="total_shares_count">{{ share.shares_count }}</td>
+                <td id="share_price">{{ share.price | usd }} </td>
+                <td id="total_shares_price">{{ (share.price * share.shares_count) | usd }}</td>
+            </tr>
+        {% endfor %}
+            <td colspan="4">CASH</td>
+            <td id="current_cash">{{ cash | usd }}</td>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %} Sell {% endblock %}
+{% block main %}
+<form action="/sell" method="post" class="d-inline-block">
+    <div>
+        <select class="d-block w-100 mb-3 btn btn-light" name="symbol">
+            {% for symbol in symbols %}
+            <option  class="dropdown-item" value="{{ symbol.stock_symbol }}">{{ symbol.stock_symbol }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <input required autocomplete="off" autofocus class="form-control" name="shares_count" placeholder="Shares" value="1" type="number">
+    </div>
+    <button class="btn btn-primary d-block w-100" type="submit">Sell Now</button>
+</form>
+{% endblock %}

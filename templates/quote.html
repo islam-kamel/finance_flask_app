@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %} Quote {% endblock %}
+
+{% block main %}
+{% if quote %}
+<div class="row">
+    <form action="/buy" method="post" class="container">
+        <div class="col">
+            <span class="form-control">$</span>
+            <span class="form-control mb-3">{{ quote.price }}</span>
+            <input type="text" class="form-control mb-3" name="symbol" readonly value="{{ quote.symbol }}">
+            <input required type="number" class="form-control"  name="shares_count" value="1" placeholder="Shares Count" >
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-outline-secondary mb-3 mt-2">Buy Now</button>
+        </div>
+    </form>
+</div>
+<hr>
+{% endif %}
+<form action="/quote" method="post" class="d-inline-block">
+    <div class="form-group">
+        <input required autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+    </div>
+    <button class="btn btn-primary d-block w-100" type="submit">Quote</button>
+
+</form>
+{% endblock %}
